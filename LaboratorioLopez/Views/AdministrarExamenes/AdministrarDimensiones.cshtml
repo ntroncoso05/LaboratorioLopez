@@ -1,0 +1,130 @@
+﻿@model ViewModels.ExamenDimensionViewModel
+
+    @{
+        var examenId = ViewBag.examenId;
+        var dimensionId = ViewBag.dimensionId;
+        ViewBag.Title = "Dimensión";
+    }
+
+    <div class="form-group row">
+        <div class="col-6">
+            <input id="descripcionDimensionInput" class="form-control" placeholder="Crear nueva Dimension: Nombre/Descripción" />
+        </div>
+        <div class="col-3">
+            <button id="descripcionDimensionButton" onclick="crearDimension()" class="btn btn-success form-control">Crear</button>
+        </div>
+    </div>
+
+    <form method="post"  onload="display()">
+        <div class="card">
+        <div class="card-header">
+            <h2>Administrar Dimensiones</h2>
+        </div>
+        <div class="card-body">
+            @if (Model.dimensiones.Count() > 0)
+            {
+                //int x = 0;
+                @*<table id="table" class="table table-borderless">*@
+                @*@for (int i = 0; i < Model.Count(); i++)
+            {
+               if ((x % 5) == 0)
+               {
+                   @:<tr class="form-check m-1">
+               }
+                       <td class="card-title text-center" style="width:5%">
+                           <input type="hidden" asp-for="@Model[i].DimensionId" />
+                           <input type="hidden" asp-for="@Model[i].Descripcion" />
+                           <input asp-for="@Model[i].EsSeleccionado" class="form-check-input" />
+                           <label class="form-check-label card-title" asp-for="@Model[i].EsSeleccionado">
+                               @Model[i].Descripcion
+                           </label>
+                       </td>
+
+               if ((x % 5) == 4)
+               {
+                   @:</tr>
+               }
+               x++;
+
+            }*@
+                @*@for (int i = 0; i < Model.Count(); i++)
+            {
+                if (Model[i].EsSeleccionado == true)
+                {
+                    @Html.DropDownListFor(m => m[i].DimensionId, new SelectList(Model, "DimensionId", "Descripcion"), "Seleccione ↓");
+                    @Html.HiddenFor(m => m[i].EsSeleccionado);
+                }
+
+            }*@
+                @*@Html.DropDownList("dropDownDimensionValue", (IEnumerable <SelectListItem>)Model.Select(dimension => new SelectListItem
+            {
+                Text = dimension.Descripcion,
+                Value = dimension.DimensionId.ToString(),
+                Selected = dimension.EsSeleccionado
+            }), "Seleccione ↓", new { style = "width: 500px;" })*@
+                @*</table>*@
+                <div><label>Selección actual: <strong>@Model.dimensiones.Where(d => d.EsSeleccionado == true).Select(d => d.Descripcion).FirstOrDefault()</strong></label></div>
+                <select id="selectNow" style="width: 500px;" asp-for="DimensionId"
+                        asp-items="@(new SelectList(Model.dimensiones,"DimensionId","Descripcion"))">
+                    <option>Seleccione ↓</option>
+                </select>
+                
+                <script type="text/javascript">
+                    function codeAddress() {
+                        if(@dimensionId > 0)
+                            $("#selectNow").val(@dimensionId);
+                        else
+                            $("#selectNow").val(0);
+                    }
+                    window.onload = codeAddress;
+                </script>
+
+                @*<select asp-for="@Model"
+                    asp-items="(IEnumerable <SelectListItem>)Model.Select(dimension => new SelectListItem
+                                     {
+                                         Text = dimension.Descripcion,
+                                         Value = dimension.DimensionId.ToString(),
+                                     })">
+                <option>Seleccione ↓</option>
+            </select>*@
+            }
+            else
+            {
+                <div class="form-check m-1">
+                    <h5 class="card-title">Ninguna Dimensión Creada</h5>
+                </div>
+            }
+        </div>
+
+        
+
+        <div class="card-footer">
+            <input type="submit" value="Actualizar" class="btn btn-primary" style="width:auto" />
+            <a href="/ListaExamen/UpsertExamen?id=@examenId" class="btn btn-secondary" style="width:auto">Regresar</a>
+        </div>
+        </div>
+    </form>
+
+@section Scripts{
+    <script>
+        descripcionDimensionButton.onclick = function crearDimension() {
+            var descripcion = $("#descripcionDimensionInput").val();
+            
+            //Pasa la descripcion al controlador para ser guardada en la base datos.
+            $.ajax({
+                type: "POST",
+                url: "/AdministrarExamenes/CrearDimension",
+                datatype: "json",
+                data: { descripcion: descripcion, },
+
+                success: function (data) {
+                    if (data.success) {
+                        document.location.reload();
+                    }
+                    else { toastr.error(data.message); }
+                }
+            });            
+        }
+    </script>
+    
+}

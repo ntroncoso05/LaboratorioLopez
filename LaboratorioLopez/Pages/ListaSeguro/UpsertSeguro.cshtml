@@ -1,0 +1,73 @@
+﻿@page
+@model LaboratorioLopez.Pages.ListaSeguro.UpsertSeguroModel
+
+<br />
+<h2 class="text-info">@(Model.Seguros.SeguroId!=0? "Editar": "Crear") Seguro</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.Seguros.SeguroId != 0)
+        {
+            <input type="hidden" asp-for="Seguros.SeguroId" /> @*Passing the id value in a hidden field*@
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Seguros.Nombre"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Seguros.Nombre" class="form-control" />
+            </div>
+            <span asp-validation-for="Seguros.Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Seguros.RNC"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Seguros.RNC" class="form-control" />
+            </div>
+            <span asp-validation-for="Seguros.RNC" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Seguros.Direccion"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Seguros.Direccion" class="form-control" />
+            </div>
+            <span asp-validation-for="Seguros.Direccion" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Seguros.Telefono"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Seguros.Telefono" class="form-control" />
+            </div>
+            <span asp-validation-for="Seguros.Telefono" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Seguros.Email"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Seguros.Email" class="form-control" />
+            </div>
+            <span asp-validation-for="Seguros.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.Seguros.SeguroId!=0? "Actualizar": "Crear")</button>
+            </div>
+            <div class="col-3">
+                <a asp-page="Inicio" class="btn btn-success form-control">Regresar a Lista</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

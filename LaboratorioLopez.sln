@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaboratorioLopez", "LaboratorioLopez\LaboratorioLopez.csproj", "{397426AA-CE42-4709-A6B8-B6DE7FFAEDE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDLCDesign", "RDLCDesign\RDLCDesign.csproj", "{C52E699D-9D79-4AE7-A10C-763DBE9F249D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{397426AA-CE42-4709-A6B8-B6DE7FFAEDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397426AA-CE42-4709-A6B8-B6DE7FFAEDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397426AA-CE42-4709-A6B8-B6DE7FFAEDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397426AA-CE42-4709-A6B8-B6DE7FFAEDE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C52E699D-9D79-4AE7-A10C-763DBE9F249D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C52E699D-9D79-4AE7-A10C-763DBE9F249D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C52E699D-9D79-4AE7-A10C-763DBE9F249D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C52E699D-9D79-4AE7-A10C-763DBE9F249D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5B37D2C-A872-4996-B9B0-1F197BCD5562}
+	EndGlobalSection
+EndGlobal

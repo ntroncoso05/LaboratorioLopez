@@ -1,0 +1,140 @@
+﻿@page
+@model LaboratorioLopez.Pages.ListaExamen.UpsertExamenModel
+
+@{
+    ViewData["Title"] = "Examenes";
+}
+
+<br />
+<h2 class="text-info">@(Model.EditarExamen.ExamenId!=0? "Editar": "Crear") Examen</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.EditarExamen.ExamenId != 0)
+        {
+            <input type="hidden" asp-for="EditarExamen.ExamenId" /> @*Passing the id value in a hidden field*@
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="EditarExamen.Categoria"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="EditarExamen.Categoria" class="form-control" />
+            </div>
+            <span asp-validation-for="EditarExamen.Categoria" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="EditarExamen.Descripcion"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="EditarExamen.Descripcion" class="form-control" />
+            </div>
+            <span asp-validation-for="EditarExamen.Descripcion" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="EditarExamen.Precio"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="EditarExamen.Precio" class="form-control" />
+            </div>
+            <span asp-validation-for="EditarExamen.Precio" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.EditarExamen.ExamenId!=0? "Actualizar": "Crear")</button>
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Regresar a Lista</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<br />
+@if (Model.EditarExamen.ExamenId != 0)
+{
+    <div class="card mt-3">
+        <div class="card-header text-primary">
+            <h3><strong>Dimensiones de Resultados</strong></h3>
+        </div>
+
+        <div class="card-body">
+            @if (Model.EditarExamen.Dimensiones.Any())
+            {
+                int x = 0;
+                <table class="table table-borderless">
+                    @foreach (var dimension in Model.EditarExamen.Dimensiones)
+                    {
+                        if ((x % 5) == 0)
+                        {
+                            @:<tr>
+                        }
+                            <td class="card-title text-center"><h6 class="card-title">@dimension</h6></td>
+
+                        if ((x % 5) == 4)
+                        {
+                            @:</tr>
+                        }
+                        x++;
+                    }
+                </table>
+            }
+            else
+            { <h5 class="card-title">Ninguna dimensión asignada</h5>}
+        </div>
+
+        <div class="card-footer">
+            <a asp-action="AdministrarDimensiones" asp-controller="AdministrarExamenes" asp-route-examenId="@Model.EditarExamen.ExamenId" style="width:auto" class="btn btn-outline-primary form-control">
+                Administrar Dimensiones
+            </a>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header text-primary">
+            <h3><strong>Parametros de Resultados</strong></h3>
+        </div>
+        <div class="card-body">
+
+            @if (Model.EditarExamen.Parametros.Any())
+            {
+                int x = 0;
+                <table class="table table-borderless">
+                    @foreach (var parametro in Model.EditarExamen.Parametros)
+                    {
+                        if ((x % 5) == 0)
+                        {
+                            @:<tr>
+                        }
+                            <td class="card-title text-center"><h6 class="card-title">@parametro</h6></td>
+
+                        if ((x % 5) == 4)
+                        {
+                            @:</tr>
+                        }
+                        x++;
+                    }
+                </table>
+            }
+            else
+            {
+                <h5 class="card-title">Ningun parametro asignado</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="AdministrarParametros" asp-controller="AdministrarExamenes" asp-route-examenId="@Model.EditarExamen.ExamenId" style="width:auto" class="btn btn-outline-primary">
+                Administrar Parametros
+            </a>
+        </div>
+    </div>
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

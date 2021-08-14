@@ -1,0 +1,104 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20210204095703_AddIdentity.cs" />
+    <Compile Remove="Migrations\20210204095703_AddIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20210206015137_DropFacturaDetalle-UsuarioTable.cs" />
+    <Compile Remove="Migrations\20210206015137_DropFacturaDetalle-UsuarioTable.Designer.cs" />
+    <Compile Remove="Migrations\20210416025557_AgregarEmailPacienteDB.cs" />
+    <Compile Remove="Migrations\20210416025557_AgregarEmailPacienteDB.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Reports\ReportePago.rdlc" />
+    <Content Remove="wwwroot\Reports\ReporteResultadoExamenes.rdlc" />
+    <Content Remove="wwwroot\Reports\ReportFactura.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\Reports\ReportePago.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wwwroot\Reports\ReporteResultadoExamenes.rdlc" />
+    <EmbeddedResource Include="wwwroot\Reports\ReportFactura.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.11">
+	
+      <PrivateAssets>all</PrivateAssets>
+      
+		
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="System.CodeDom" Version="5.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+	
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ReportDataSet\dsFactura.Designer.cs">
+      <DependentUpon>dsFactura.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ReportDataSet\dsPago.Designer.cs">
+      <DependentUpon>dsPago.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ReportDataSet\dsResultadoExamenes.Designer.cs">
+      <DependentUpon>dsResultadoExamenes.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ReportDataSet\dsFactura.xsc">
+      <DependentUpon>dsFactura.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSet\dsFactura.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsFactura.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\dsFactura.xss">
+      <DependentUpon>dsFactura.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSet\dsPago.xsc">
+      <DependentUpon>dsPago.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSet\dsPago.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsPago.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\dsPago.xss">
+      <DependentUpon>dsPago.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSet\dsResultadoExamenes.xsc">
+      <DependentUpon>dsResultadoExamenes.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSet\dsResultadoExamenes.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsResultadoExamenes.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\dsResultadoExamenes.xss">
+      <DependentUpon>dsResultadoExamenes.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+</Project>

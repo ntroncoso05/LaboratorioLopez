@@ -1,0 +1,92 @@
+﻿@page
+@model LaboratorioLopez.Pages.Factura.InicioModel
+@{ 
+    ViewData["Title"] = "Facturar";
+}
+<div class="col-12 border p-3">
+    <div class="col-6">
+        <h2 class="text-info">Seleccionar Examenes</h2>
+    </div>    
+</div>
+
+<div class="container row p-0 m-0">
+    <div class="col-12 border p-2">
+        <form>
+            <table id="DT_loadExamen" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Agregar</th>
+                    </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 border p-3">
+    <div class="col-6">
+        <h2 class="text-info">Información del Paciente</h2>
+    </div>
+    <div class="border container row p-0 m-0">
+        <div class="col-12 border p-2">
+            <form id="formFactura">
+                <input id="labelPacienteId" type="hidden" asp-for="Pacientes.PacienteId" />
+                <table class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                    <tr>
+                        @if (Model.Pacientes != null)
+                         {
+                            <th>@Model.Pacientes.Nombre</th>
+                            <th>@Model.Pacientes.Apellido</th>
+                            <th width="40%">@Model.Pacientes.Direccion</th>
+                            <th>@Model.Pacientes.Telefono</th>
+                            <th width="10%">
+                                    @Html.DropDownList("dropDownListSeguroValue", (IEnumerable
+                                    <SelectListItem>)ViewData["DBSeguros"])
+                                </th>
+                         }
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="text-success">Factura: @*#@Model.Facturas.FacturaId*@</h2>
+
+                <table id="DT_loadFactura" class="table table-striped table-bordered text-center" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="2%">#</th>
+                            <th width="12%">Examen#</th>
+                            <th width="30%">Descripcion</th>
+                            <th width="8%">Precio</th>
+                            <th width="8%">%</th>
+                            <th width="8%">Pago</th>
+                            <th width="10%">Balance</th>
+                            <th width="6%">Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"> </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <table class="tfoot table-striped table-bordered col-sm-2  position-absolute" style="right:0px;bottom:75px; background-color:aliceblue">
+        <tfoot id="tfoot"></tfoot>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/listaPacienteFactura.js"></script>
+}

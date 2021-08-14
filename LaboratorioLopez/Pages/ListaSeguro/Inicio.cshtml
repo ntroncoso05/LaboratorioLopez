@@ -1,0 +1,32 @@
+﻿@page
+@model LaboratorioLopez.Pages.ListaSeguro.InicioModel
+
+<div class="col-12 border p-3">
+    <div class="col-6">
+        <h2 class="text-info">Lista Seguros</h2>
+    </div>
+    <div class="col-3 offset-9">
+        <a asp-page="UpsertSeguro" class="btn btn-info form-control text-white">
+            Agregar Nuevo Seguro
+        </a>
+    </div>
+</div>
+<div class="container row p-0 m-0">
+    <div class="col-12 border p-2">
+        <table id="DT_loadSeguro" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>RNC</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/listaSeguro.js"></script>
+}

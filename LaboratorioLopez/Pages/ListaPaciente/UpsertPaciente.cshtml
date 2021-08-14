@@ -1,0 +1,97 @@
+﻿@page
+@model LaboratorioLopez.Pages.ListaPaciente.UpsertPacienteModel
+
+@{
+    ViewData["Title"] = "Pacientes";
+}
+
+<br />
+<h2 class="text-info">@(Model.Paciente.PacienteId!=0? "Editar": "Crear") Paciente</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.Paciente.PacienteId != 0)
+        {
+            <input type="hidden" asp-for="Paciente.PacienteId" /> @*Passing the id value in a hidden field*@
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Paciente.Nombre"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Paciente.Nombre" class="form-control" placeholder="Muestra: Nathaniel"/>
+            </div>
+            <span asp-validation-for="Paciente.Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Paciente.Apellido"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Paciente.Apellido" class="form-control" placeholder="Muestra: Troncoso"/>
+            </div>
+            <span asp-validation-for="Paciente.Apellido" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Paciente.Direccion"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Paciente.Direccion" class="form-control" placeholder="Muestra: C/ 16 de agosto #21"/>
+            </div>
+            <span asp-validation-for="Paciente.Direccion" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Paciente.Telefono"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Paciente.Telefono" id='telnumero' class="form-control" />
+            </div>
+            <span asp-validation-for="Paciente.Telefono" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Paciente.Email" id='email'></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Paciente.Email" class="form-control" placeholder="Muestra: ntroncoso05@gmail.com"/>
+            </div>
+            <span asp-validation-for="Paciente.Email" class="text-danger"></span>
+        </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Paciente.FechaNacimiento"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="Paciente.FechaNacimiento" type="date" value="@DateTime.Today" class="form-control" />
+                </div>
+                <span asp-validation-for="Paciente.FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-3 offset-3">
+                    <button type="submit" class="btn btn-primary form-control">@(Model.Paciente.PacienteId!=0? "Actualizar": "Crear")</button>
+                </div>
+                <div class="col-3">
+                    <a asp-page="Index" class="btn btn-success form-control">Regresar a Lista</a>
+                </div>
+            </div>
+</form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            var phones = [{ "mask": "(###) ###-####" }];
+            $('#telnumero').inputmask({
+                mask: phones,
+                greedy: false,
+                definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+}

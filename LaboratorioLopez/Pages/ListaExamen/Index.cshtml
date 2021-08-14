@@ -1,0 +1,34 @@
+﻿@page
+@model LaboratorioLopez.Pages.ListaExamen.IndexModel
+
+@{
+    ViewData["Title"] = "Examenes";
+}
+
+<div class="col-12 border p-3">
+    <div class="col-6">
+        <h2 class="text-info">Registro Examenes</h2>
+    </div>
+    <div class="col-3 offset-9">
+        <a asp-page="UpsertExamen" class="btn btn-info form-control text-white">
+            Agregar Nuevo Examen
+        </a>
+    </div>
+</div>
+<div class="container row p-0 m-0">
+    <div class="col-12 border p-2">
+        <table id="DT_loadExamen" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/listaExamen.js"></script>
+}

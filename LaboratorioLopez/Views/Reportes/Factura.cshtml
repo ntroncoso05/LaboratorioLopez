@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Reportes";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Factura: Seleccione Opción Del Reporte</h1>
+    <div>
+        <a id="btnPrint" asp-controller="Reportes" asp-action="PrintFactura" class="btn btn-success" target="_blank">PDF</a>
+        <a asp-controller="Reportes" asp-action="EnviarCorreoFactura" class="btn btn-primary">Enviar Correo</a>
+        <a asp-controller="Reportes" asp-action="ExportarExcelFactura" target="_parent" class="btn btn-secondary">Excel</a>
+    </div>
+</div>

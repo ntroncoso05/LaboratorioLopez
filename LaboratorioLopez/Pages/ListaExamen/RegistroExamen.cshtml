@@ -1,0 +1,42 @@
+﻿@page
+@model LaboratorioLopez.Pages.ListaExamen.RegistroExamenModel
+
+@{
+    ViewData["Title"] = "Examenes";
+}
+
+<br />
+<div class="col-12 border p-3">
+    <div class="col-6">
+        <h2 class="text-info"><strong>Registro Examenes En Progreso</strong></h2>
+    </div>
+
+    <div id="botonGuardar" class="col-3 offset-9">
+        <a id="guardarPacinteExamenes" onclick="guardarPacinteResultado()" class="btn btn-info form-control text-white">
+            Guardar Resultados
+        </a>
+    </div>
+</div>
+
+<div class="container row p-0 m-0">
+    <div class="col-12 border p-2">
+        <table id="DT_loadExamenPaciente" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>Paciente</th>
+                    <th>Examen</th>
+                    <th>Resultado</th>
+                    <th>Unidad</th>
+                    <th>Parametro</th>
+                </tr>
+            </thead>
+            <tbody id="tcuerpo"> </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/RegistroExamen.js"></script>
+}
