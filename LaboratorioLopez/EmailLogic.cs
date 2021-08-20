@@ -32,8 +32,7 @@ namespace LaboratorioLopez
             try
             {
                 using (SmtpClient client = new SmtpClient(_host, 587))
-                {
-                    
+                {                    
                     MailMessage mailMessage = new MailMessage();
                     mailMessage.From = new MailAddress(_from, _alias);
                     mailMessage.BodyEncoding = Encoding.UTF8;
