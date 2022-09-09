@@ -42,7 +42,7 @@ namespace LaboratorioLopez
                     mailMessage.IsBodyHtml = emailModel.IsBodyHtml;
 
                     client.EnableSsl = true;
-                    client.Credentials = new NetworkCredential("ntroncoso2010@hotmail.com", "?");
+                    client.Credentials = new NetworkCredential("email", "password");
                     client.Send(mailMessage);
                 }
             }
